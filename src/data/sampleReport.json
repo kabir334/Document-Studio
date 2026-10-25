@@ -1,11 +1,22 @@
 {
-  "title": "Monthly Report",
-  "author": "Sample Author",
-  "date": "2026-10-01",
-  "summary": "Project progress summary.",
-  "items": [
-    "Development",
-    "Testing",
-    "Review"
+  "title": "Monthly Status Report",
+  "period": "September 2026",
+  "author": "Alex Morgan",
+  "team": "Platform Engineering",
+  "summary": "Delivery remained on track. API migration reached 85% completion and customer-reported defects dropped by 12% compared to last month.",
+  "highlights": [
+    "Released billing API v2 to staging",
+    "Reduced p95 latency on search by 18%",
+    "Completed security review for SSO integration"
+  ],
+  "metrics": [
+    { "name": "Sprint goals met", "value": "9 / 10" },
+    { "name": "Open bugs", "value": "14" },
+    { "name": "Deployments", "value": "22" }
+  ],
+  "nextSteps": [
+    "Production rollout for billing API",
+    "Load testing for peak traffic",
+    "Documentation refresh for partner APIs"
   ]
 }

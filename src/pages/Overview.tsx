@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom'
+import { templates } from '../templates'
+import { listSavedDocuments } from '../services/savedDocuments'
 
 export function Overview() {
+  const docCount = listSavedDocuments().length
+  const templateCount = templates.length
+
   return (
     <div className="flex flex-col gap-8 p-8">
       <div>
@@ -16,8 +21,8 @@ export function Overview() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
           </div>
-          <p className="text-3xl font-bold text-white">04</p>
-          <p className="text-sm text-slate-400">Documents</p>
+          <p className="text-3xl font-bold text-white">{docCount}</p>
+          <p className="text-sm text-slate-400">Saved documents</p>
         </div>
 
         <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
@@ -26,7 +31,7 @@ export function Overview() {
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
             </svg>
           </div>
-          <p className="text-3xl font-bold text-white">03</p>
+          <p className="text-3xl font-bold text-white">{templateCount}</p>
           <p className="text-sm text-slate-400">Templates</p>
         </div>
       </div>
@@ -40,14 +45,22 @@ export function Overview() {
           </div>
           <div>
             <h3 className="text-lg font-medium text-white">Create a document</h3>
-            <p className="mt-1 text-sm text-slate-400">Start from a template and add your data.</p>
+            <p className="mt-1 text-sm text-slate-400">Pick a template, add JSON data, preview, and export PDF.</p>
           </div>
-          <Link
-            to="/new"
-            className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-500"
-          >
-            New document
-          </Link>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              to="/new"
+              className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-500"
+            >
+              New document
+            </Link>
+            <Link
+              to="/templates"
+              className="rounded-lg border border-slate-600 px-6 py-2.5 text-sm font-medium text-slate-200 hover:bg-slate-800"
+            >
+              View templates
+            </Link>
+          </div>
         </div>
       </div>
     </div>

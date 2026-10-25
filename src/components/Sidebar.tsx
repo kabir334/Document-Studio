@@ -17,13 +17,13 @@ const navGroups: NavGroup[] = [
     items: [
       { label: 'Overview', path: '/' },
       { label: 'New document', path: '/new' },
-      { label: 'My documents', path: '/documents', placeholder: true },
+      { label: 'My documents', path: '/documents' },
     ],
   },
   {
     title: 'Design',
     items: [
-      { label: 'Templates', path: '/templates', placeholder: true },
+      { label: 'Templates', path: '/templates' },
       { label: 'Components', path: '/components', placeholder: true },
       { label: 'Data sources', path: '/data-sources', placeholder: true },
     ],
