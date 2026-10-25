@@ -1,0 +1,11 @@
+{
+  "title": "Monthly Report",
+  "author": "Sample Author",
+  "date": "2026-10-01",
+  "summary": "Project progress summary.",
+  "items": [
+    "Development",
+    "Testing",
+    "Review"
+  ]
+}
