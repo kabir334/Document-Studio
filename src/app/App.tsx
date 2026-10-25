@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Sidebar } from '../components/Sidebar'
 import { Overview } from '../pages/Overview'
 import { NewDocument } from '../pages/NewDocument'
+import { Templates } from '../pages/Templates'
+import { MyDocuments } from '../pages/MyDocuments'
 import { ComingSoon } from '../pages/ComingSoon'
 
 export function App() {
@@ -13,8 +15,8 @@ export function App() {
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/new" element={<NewDocument />} />
-            <Route path="/documents" element={<ComingSoon />} />
-            <Route path="/templates" element={<ComingSoon />} />
+            <Route path="/documents" element={<MyDocuments />} />
+            <Route path="/templates" element={<Templates />} />
             <Route path="/components" element={<ComingSoon />} />
             <Route path="/data-sources" element={<ComingSoon />} />
             <Route path="/preferences" element={<ComingSoon />} />

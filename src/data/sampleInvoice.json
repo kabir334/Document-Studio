@@ -1,0 +1,18 @@
+{
+  "issuerName": "Northline Digital Ltd.",
+  "issuerAddress": "42 Market Street, Austin, TX 78701",
+  "issuerEmail": "billing@northlinedigital.com",
+  "clientName": "Summit Retail Group",
+  "clientAddress": "900 Commerce Blvd, Denver, CO 80202",
+  "invoiceNumber": "INV-2026-1042",
+  "invoiceDate": "2026-09-28",
+  "dueDate": "2026-10-28",
+  "currency": "USD",
+  "lineItems": [
+    { "description": "UX audit and recommendations", "quantity": 1, "unitPrice": 2400 },
+    { "description": "Implementation support (40 hours)", "quantity": 40, "unitPrice": 95 },
+    { "description": "Hosting and monitoring (monthly)", "quantity": 1, "unitPrice": 180 }
+  ],
+  "taxRate": 8.25,
+  "paymentNotes": "Please remit payment within 30 days via ACH. Include invoice number on remittance."
+}

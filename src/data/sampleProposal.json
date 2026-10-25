@@ -1,0 +1,22 @@
+{
+  "projectTitle": "Customer Portal Modernization",
+  "clientName": "Harbor Logistics Inc.",
+  "preparedBy": "Northline Digital Ltd.",
+  "proposalDate": "October 1, 2026",
+  "executiveSummary": "Harbor Logistics needs a faster, mobile-friendly customer portal. This proposal covers discovery, design, build, and a phased launch over twelve weeks.",
+  "problem": "The current portal is difficult to use on mobile, order status updates are delayed, and support tickets spike after each release.",
+  "scope": "We will deliver a responsive portal, real-time shipment tracking, self-service account updates, and an admin dashboard for support staff.",
+  "deliverables": [
+    { "item": "Discovery workshops and journey maps", "owner": "Product" },
+    { "item": "UI design system and key screens", "owner": "Design" },
+    { "item": "Portal MVP with tracking and account area", "owner": "Engineering" },
+    { "item": "Training and launch support", "owner": "Customer Success" }
+  ],
+  "timeline": [
+    "Weeks 1–2: Discovery and architecture",
+    "Weeks 3–5: Design and API integration",
+    "Weeks 6–10: Build and QA",
+    "Weeks 11–12: Pilot and production launch"
+  ],
+  "investment": "$48,500 USD (fixed fee, excluding third-party licenses)"
+}

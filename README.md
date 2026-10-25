@@ -11,13 +11,20 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-## POC workflow
+## Workflow
 
-1. Open the app and go to **New document**
-2. Select the **Simple Report** template
-3. Click **Load sample** to fill example JSON
-4. See the live preview update
-5. Click **Export PDF** to download the document
+1. Open **New document** or pick a template under **Templates**
+2. Click **Load sample** for realistic JSON for that template
+3. Preview updates live; **Export PDF** when valid
+4. **Save draft** stores work in **My documents** (browser local storage)
+
+Templates: Monthly Status Report, Professional Invoice, Certificate of Completion, Project Proposal.
+
+## Tests
+
+```bash
+npm run test
+```
 
 ## Project structure
 
