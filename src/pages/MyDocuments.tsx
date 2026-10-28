@@ -24,7 +24,7 @@ export function MyDocuments() {
 
   const handleOpen = (doc: SavedDocument) => {
     navigate(`/new?template=${doc.templateId}`, {
-      state: { json: doc.json, title: doc.title },
+      state: { json: doc.json, document: doc.document, status: doc.status },
     })
   }
 
@@ -60,7 +60,10 @@ export function MyDocuments() {
                 <div>
                   <p className="font-medium text-white">{doc.title}</p>
                   <p className="text-sm text-slate-500">
-                    {templateName} · {new Date(doc.createdAt).toLocaleString()}
+                    {templateName}
+                    {doc.status ? ` · ${doc.status}` : ''}
+                    {' · '}
+                    {new Date(doc.updatedAt ?? doc.createdAt).toLocaleString()}
                   </p>
                 </div>
                 <div className="flex gap-2">

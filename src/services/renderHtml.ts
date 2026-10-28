@@ -9,6 +9,7 @@ function escapeHtml(text: string): string {
 }
 
 const baseStyles = `
+  @page { size: A4; margin: 12mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: "Segoe UI", system-ui, sans-serif;
