@@ -1,3 +1,5 @@
+import type { DocumentModel, DocumentStatus } from '../domain/document'
+
 const STORAGE_KEY = 'document-studio-saved'
 
 export interface SavedDocument {
@@ -5,7 +7,10 @@ export interface SavedDocument {
   title: string
   templateId: string
   json: string
+  document?: DocumentModel
+  status?: DocumentStatus
   createdAt: string
+  updatedAt?: string
 }
 
 function readAll(): SavedDocument[] {
@@ -24,16 +29,22 @@ function writeAll(docs: SavedDocument[]): void {
 }
 
 export function listSavedDocuments(): SavedDocument[] {
-  return readAll().sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-  )
+  return readAll().sort((a, b) => {
+    const aTime = new Date(a.updatedAt ?? a.createdAt).getTime()
+    const bTime = new Date(b.updatedAt ?? b.createdAt).getTime()
+    return bTime - aTime
+  })
 }
 
-export function saveDocument(doc: Omit<SavedDocument, 'id' | 'createdAt'>): SavedDocument {
+export function saveDocument(
+  doc: Omit<SavedDocument, 'id' | 'createdAt' | 'updatedAt'>,
+): SavedDocument {
+  const now = new Date().toISOString()
   const entry: SavedDocument = {
     ...doc,
     id: crypto.randomUUID(),
-    createdAt: new Date().toISOString(),
+    createdAt: now,
+    updatedAt: now,
   }
   const all = readAll()
   all.unshift(entry)

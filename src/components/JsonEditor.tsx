@@ -7,7 +7,7 @@ interface JsonEditorProps {
 
 export function JsonEditor({ value, onChange, onLoadSample, error }: JsonEditorProps) {
   return (
-    <div className="flex h-full flex-col gap-3">
+    <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <label htmlFor="json-input" className="text-sm font-medium text-slate-300">
           Data (JSON)

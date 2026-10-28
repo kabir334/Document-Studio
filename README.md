@@ -6,17 +6,29 @@ A local document-generation app for creating structured documents from templates
 
 ```bash
 npm install
+npx playwright install chromium
 npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+`npm run dev` starts Vite and a local Playwright PDF server together. Chromium is required once for high-quality PDF export (print, not a screenshot).
+
 ## Workflow
 
 1. Open **New document** or pick a template under **Templates**
 2. Click **Load sample** for realistic JSON for that template
-3. Preview updates live; **Export PDF** when valid
-4. **Save draft** stores work in **My documents** (browser local storage)
+3. Preview updates from the JSON until you edit the layout
+4. Use **Blocks** to add, reorder, delete, and edit sections
+5. **Undo** / **Redo** (Ctrl+Z / Ctrl+Y) reverse layout edits
+6. **Export PDF** when the status is Ready (validation must pass)
+7. **Save draft** stores JSON, layout, and status in **My documents**
+
+Status:
+
+- **Draft** — missing required content
+- **Ready** — valid and exportable
+- **Exported** — PDF created; editing returns to Draft or Ready
 
 Templates: Monthly Status Report, Professional Invoice, Certificate of Completion, Project Proposal.
 
@@ -31,30 +43,28 @@ npm run test
 ```
 src/
   app/           App shell and routing
-  pages/         Overview, New Document, Coming Soon
-  components/    Sidebar, TemplatePicker, JsonEditor, DocumentPreview
-  domain/        DocumentModel and Template types
-  templates/     Template definitions (Simple Report)
-  services/      parseJson, buildDocument, renderHtml, exportPdf
-  data/          Sample JSON payload
-docs/
-  project-idea.md        Presentable project pitch
-  features-overview.md   Feature list (POC vs future)
-  concept-ui-mockup.html Concept UI for the New Document screen
+  pages/         Overview, New Document, Templates, My documents
+  components/    Sidebar, editors, preview, block list
+  domain/        DocumentModel, blocks
+  templates/     Template definitions
+  services/      parse, build, render, validate, PDF client, storage
+  hooks/         Undo/redo history helpers
+server/
+  pdf-server.mjs Playwright PDF service
 ```
 
 ## Tech stack
 
 - React 19 + TypeScript + Vite
 - Tailwind CSS 4
-- html2pdf.js (client-side PDF export)
+- Playwright (Chromium) for PDF
 - React Router
 
 ## Documentation
 
-- [Project idea](docs/project-idea.md) — what this project is and why
-- [Features overview](docs/features-overview.md) — what's implemented vs planned
-- [Engineering brief](../document-generation-project-brief.md) — full brainstorming notes
+- [Project idea](docs/project-idea.md)
+- [Features overview](docs/features-overview.md)
+- [Development plan and status](docs/project-development-analysis.md)
 
 ## Build
 
@@ -62,3 +72,5 @@ docs/
 npm run build
 npm run preview
 ```
+
+PDF export during `vite preview` still needs `npm run pdf-server` in another terminal.

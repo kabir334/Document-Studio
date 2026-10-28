@@ -9,6 +9,8 @@ export type Block =
   | { type: 'list'; items: string[]; ordered?: boolean }
   | { type: 'total'; label: string; value: string }
 
+export type DocumentStatus = 'draft' | 'ready' | 'exported'
+
 export interface DocumentModel {
   theme: DocumentTheme
   filename: string
