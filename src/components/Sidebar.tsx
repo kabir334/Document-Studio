@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 interface NavItem {
   label: string
   path: string
-  placeholder?: boolean
 }
 
 interface NavGroup {
@@ -24,15 +23,13 @@ const navGroups: NavGroup[] = [
     title: 'Design',
     items: [
       { label: 'Templates', path: '/templates' },
-      { label: 'Components', path: '/components', placeholder: true },
-      { label: 'Data sources', path: '/data-sources', placeholder: true },
+      { label: 'Components', path: '/components' },
+      { label: 'Data sources', path: '/data-sources' },
     ],
   },
   {
     title: 'Settings',
-    items: [
-      { label: 'Preferences', path: '/preferences', placeholder: true },
-    ],
+    items: [{ label: 'Preferences', path: '/preferences' }],
   },
 ]
 
@@ -63,9 +60,6 @@ export function Sidebar() {
                     }
                   >
                     {item.label}
-                    {item.placeholder && (
-                      <span className="ml-1.5 text-xs text-slate-600">·</span>
-                    )}
                   </NavLink>
                 </li>
               ))}

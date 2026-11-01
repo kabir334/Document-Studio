@@ -1,6 +1,7 @@
 interface DocumentPreviewProps {
   html: string | null
-  onExport: () => void
+  onExportPdf: () => void
+  onExportHtml: () => void
   exporting: boolean
   canExport?: boolean
   issues?: string[]
@@ -9,7 +10,8 @@ interface DocumentPreviewProps {
 
 export function DocumentPreview({
   html,
-  onExport,
+  onExportPdf,
+  onExportHtml,
   exporting,
   canExport = true,
   issues = [],
@@ -17,16 +19,26 @@ export function DocumentPreview({
 }: DocumentPreviewProps) {
   return (
     <div className="flex h-full flex-col gap-3">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-sm font-medium text-slate-300">Preview</span>
-        <button
-          type="button"
-          onClick={onExport}
-          disabled={!html || exporting || !canExport}
-          className="rounded-lg bg-blue-600 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          {exporting ? 'Exporting…' : 'Export PDF'}
-        </button>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={onExportHtml}
+            disabled={!html || !canExport}
+            className="rounded-lg border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800 disabled:opacity-40"
+          >
+            Download HTML
+          </button>
+          <button
+            type="button"
+            onClick={onExportPdf}
+            disabled={!html || exporting || !canExport}
+            className="rounded-lg bg-blue-600 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {exporting ? 'Exporting…' : 'Export PDF'}
+          </button>
+        </div>
       </div>
 
       {issues.length > 0 && (
@@ -37,9 +49,7 @@ export function DocumentPreview({
         </ul>
       )}
 
-      {exportError && (
-        <p className="text-xs text-red-400">{exportError}</p>
-      )}
+      {exportError && <p className="text-xs text-red-400">{exportError}</p>}
 
       <div className="flex-1 overflow-hidden rounded-lg border border-slate-700 bg-white">
         {html ? (
