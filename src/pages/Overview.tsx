@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom'
 import { templates } from '../templates'
 import { listSavedDocuments } from '../services/savedDocuments'
+import { listExportHistory } from '../services/exportHistory'
+import { loadPreferences } from '../services/preferences'
 
 export function Overview() {
   const docCount = listSavedDocuments().length
   const templateCount = templates.length
+  const history = listExportHistory().slice(0, 5)
+  const prefs = loadPreferences()
 
   return (
     <div className="flex flex-col gap-8 p-8">
@@ -45,24 +49,43 @@ export function Overview() {
           </div>
           <div>
             <h3 className="text-lg font-medium text-white">Create a document</h3>
-            <p className="mt-1 text-sm text-slate-400">Pick a template, add JSON data, preview, and export PDF.</p>
+            <p className="mt-1 text-sm text-slate-400">
+              Pick a template, add data from JSON or CSV, edit blocks, preview, export PDF or HTML.
+            </p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
-              to="/new"
+              to={`/new?template=${prefs.defaultTemplateId}`}
               className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-500"
             >
               New document
             </Link>
             <Link
-              to="/templates"
+              to="/data-sources"
               className="rounded-lg border border-slate-600 px-6 py-2.5 text-sm font-medium text-slate-200 hover:bg-slate-800"
             >
-              View templates
+              Data sources
             </Link>
           </div>
         </div>
       </div>
+
+      {history.length > 0 && (
+        <div className="max-w-2xl">
+          <h3 className="text-sm font-medium text-white">Recent exports</h3>
+          <ul className="mt-3 flex flex-col gap-2">
+            {history.map((entry) => (
+              <li
+                key={entry.id}
+                className="rounded-lg border border-slate-800 bg-slate-900/30 px-4 py-2 text-sm text-slate-400"
+              >
+                {entry.title} · {entry.format.toUpperCase()} ·{' '}
+                {new Date(entry.at).toLocaleString()}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

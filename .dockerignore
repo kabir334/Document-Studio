@@ -1,0 +1,10 @@
+node_modules
+dist
+.git
+.cursor
+*.pdf
+smoke-test.pdf
+invoice-*.pdf
+README.md
+docs
+agent-transcripts

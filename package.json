@@ -8,6 +8,7 @@
     "pdf-server": "node server/pdf-server.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "start": "node server/app.mjs",
     "test": "vitest run"
   },
   "dependencies": {

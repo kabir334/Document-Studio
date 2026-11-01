@@ -4,7 +4,9 @@ import { Overview } from '../pages/Overview'
 import { NewDocument } from '../pages/NewDocument'
 import { Templates } from '../pages/Templates'
 import { MyDocuments } from '../pages/MyDocuments'
-import { ComingSoon } from '../pages/ComingSoon'
+import { DataSources } from '../pages/DataSources'
+import { Components } from '../pages/Components'
+import { Preferences } from '../pages/Preferences'
 
 export function App() {
   return (
@@ -17,9 +19,9 @@ export function App() {
             <Route path="/new" element={<NewDocument />} />
             <Route path="/documents" element={<MyDocuments />} />
             <Route path="/templates" element={<Templates />} />
-            <Route path="/components" element={<ComingSoon />} />
-            <Route path="/data-sources" element={<ComingSoon />} />
-            <Route path="/preferences" element={<ComingSoon />} />
+            <Route path="/components" element={<Components />} />
+            <Route path="/data-sources" element={<DataSources />} />
+            <Route path="/preferences" element={<Preferences />} />
           </Routes>
         </main>
       </div>

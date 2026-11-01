@@ -1,5 +1,7 @@
 export type DocumentTheme = 'report' | 'invoice' | 'certificate' | 'proposal'
 
+export type CertificateAccent = 'navy' | 'forest' | 'burgundy' | 'gold'
+
 export type Block =
   | { type: 'heading'; text: string; level?: 1 | 2 | 3 }
   | { type: 'paragraph'; text: string }
@@ -15,4 +17,5 @@ export interface DocumentModel {
   theme: DocumentTheme
   filename: string
   blocks: Block[]
+  accent?: CertificateAccent
 }

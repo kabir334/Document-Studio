@@ -4,7 +4,7 @@ Project summary
 
 Document Studio is a local application for producing structured documents from templates and structured input data. The work is organized in four phases, from a minimal end-to-end flow to broader template, editing, and data capabilities. This document records the planned scope per phase and implementation status as development proceeds.
 
-Last updated: October 2026
+Last updated: November 2026
 
 
 Phase 1 — Foundation and first working flow
@@ -94,21 +94,27 @@ Broaden input and output options and complete key settings areas currently held 
 
 Features
 
-- Data sources — JSON file and CSV input mapped to template fields. Status: Not started.
+- Data sources — JSON file and CSV input mapped to template fields; saved sources and use in document flow. Status: Complete.
 
-- Unified data access — Common handling of different input types behind one interface. Status: Not started.
+- Unified data access — Common loaders for JSON paste, file upload, and saved sources. Status: Complete.
 
-- Additional export formats — HTML download; optional editable document export if feasible locally. Status: Not started.
+- Additional export formats — HTML download using the same rendered document as preview and PDF. Status: Complete.
 
-- Shared layout for outputs — One document structure used across preview and export targets. Status: Not started.
+- Shared layout for outputs — One HTML render path for preview, PDF, and HTML file. Status: Complete.
 
-- Preferences — Basic application defaults and export-related settings. Status: Not started.
+- Preferences — Default template, certificate color, and footer studio name. Status: Complete.
 
-- Optional extensions — Conditional content blocks, light branding, local generation history. Status: Not started.
+- Components catalog — Read-only reference page for block types. Status: Complete.
+
+- Certificate color accents — Navy, forest, burgundy, and gold palettes on certificate output. Status: Complete.
+
+- Generation history — Recent PDF and HTML exports on Overview. Status: Complete.
+
+- Docker packaging — Single container serves the built UI and Playwright PDF API on port 8080. Status: Complete.
 
 Phase note
 
-Final expansion phase.
+Phase 4 is complete.
 
 
 Overall phase status
@@ -116,9 +122,9 @@ Overall phase status
 - Phase 1: Complete
 - Phase 2: Complete
 - Phase 3: Complete
-- Phase 4: Not started
+- Phase 4: Complete
 
-Checkpoint — October 2026
+Checkpoint — November 2026
 
-Phase 3 delivered: block editor, property panel, undo/redo, draft/ready/exported status, export validation, saved edited layouts, and Playwright PDF (same HTML/CSS as preview).
+Phase 4 delivered: data sources (JSON/CSV), HTML export, preferences and branding footer, certificate color accents, components catalog, export history, and Docker deployment.
 
