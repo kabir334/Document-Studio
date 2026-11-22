@@ -13,7 +13,7 @@ export function App() {
     <BrowserRouter>
       <div className="flex h-screen overflow-hidden">
         <Sidebar />
-        <main className="flex-1 overflow-auto bg-[#0f1117]">
+        <main className="flex-1 overflow-auto bg-app">
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/new" element={<NewDocument />} />

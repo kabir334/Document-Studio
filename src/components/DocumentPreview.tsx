@@ -20,13 +20,13 @@ export function DocumentPreview({
   return (
     <div className="flex h-full flex-col gap-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <span className="text-sm font-medium text-slate-300">Preview</span>
+        <span className="text-sm font-medium text-app">Preview</span>
         <div className="flex gap-2">
           <button
             type="button"
             onClick={onExportHtml}
             disabled={!html || !canExport}
-            className="rounded-lg border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800 disabled:opacity-40"
+            className="rounded-lg border border-app-dashed px-3 py-1.5 text-sm text-app hover:bg-app-hover disabled:opacity-40"
           >
             Download HTML
           </button>
@@ -51,7 +51,7 @@ export function DocumentPreview({
 
       {exportError && <p className="text-xs text-red-400">{exportError}</p>}
 
-      <div className="flex-1 overflow-hidden rounded-lg border border-slate-700 bg-white">
+      <div className="flex-1 overflow-hidden rounded-lg border border-app bg-white">
         {html ? (
           <iframe
             srcDoc={html}
@@ -60,7 +60,7 @@ export function DocumentPreview({
             sandbox="allow-same-origin"
           />
         ) : (
-          <div className="flex h-full min-h-[200px] items-center justify-center text-sm text-slate-400">
+          <div className="flex h-full min-h-[200px] items-center justify-center text-sm text-app-muted">
             Enter valid JSON to see a preview
           </div>
         )}

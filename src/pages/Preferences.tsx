@@ -32,16 +32,16 @@ export function Preferences() {
   return (
     <div className="flex flex-col gap-8 p-8">
       <div>
-        <p className="text-sm text-slate-500">Settings / Preferences</p>
-        <h2 className="mt-1 text-2xl font-semibold text-white">Preferences</h2>
-        <p className="mt-1 text-slate-400">Defaults and branding for new documents.</p>
+        <p className="text-sm text-app-subtle">Settings / Preferences</p>
+        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Preferences</h2>
+        <p className="mt-1 text-app-muted">Defaults and branding for new documents.</p>
       </div>
 
-      <div className="flex max-w-lg flex-col gap-5 rounded-xl border border-slate-800 bg-slate-900/40 p-6">
-        <label className="flex flex-col gap-2 text-sm text-slate-300">
+      <div className="flex max-w-lg flex-col gap-5 rounded-xl border border-app bg-app-card p-6">
+        <label className="flex flex-col gap-2 text-sm text-app">
           Default template
           <select
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-slate-200"
+            className="rounded-lg border border-app bg-app-input px-3 py-2 text-app"
             value={prefs.defaultTemplateId}
             onChange={(e) => setPrefs({ ...prefs, defaultTemplateId: e.target.value })}
           >
@@ -52,7 +52,7 @@ export function Preferences() {
         </label>
 
         <div>
-          <p className="text-sm text-slate-300">Default certificate color</p>
+          <p className="text-sm text-app">Default certificate color</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {ACCENTS.map((accent) => (
               <button
@@ -61,8 +61,8 @@ export function Preferences() {
                 onClick={() => setPrefs({ ...prefs, defaultCertificateAccent: accent.id })}
                 className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-sm ${
                   prefs.defaultCertificateAccent === accent.id
-                    ? 'border-blue-500 text-white'
-                    : 'border-slate-700 text-slate-400'
+                    ? 'border-blue-500 text-app-heading'
+                    : 'border-app text-app-muted'
                 }`}
               >
                 <span className={`h-4 w-4 rounded-full ${accent.className}`} />
@@ -72,10 +72,10 @@ export function Preferences() {
           </div>
         </div>
 
-        <label className="flex flex-col gap-2 text-sm text-slate-300">
+        <label className="flex flex-col gap-2 text-sm text-app">
           Footer / studio name
           <input
-            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-slate-200"
+            className="rounded-lg border border-app bg-app-input px-3 py-2 text-app"
             value={prefs.studioName}
             onChange={(e) => setPrefs({ ...prefs, studioName: e.target.value })}
           />

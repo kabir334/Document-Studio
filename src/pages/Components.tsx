@@ -15,9 +15,9 @@ export function Components() {
   return (
     <div className="flex flex-col gap-8 p-8">
       <div>
-        <p className="text-sm text-slate-500">Design / Components</p>
-        <h2 className="mt-1 text-2xl font-semibold text-white">Components</h2>
-        <p className="mt-1 max-w-2xl text-slate-400">
+        <p className="text-sm text-app-subtle">Design / Components</p>
+        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Components</h2>
+        <p className="mt-1 max-w-2xl text-app-muted">
           Building blocks used inside templates. Edit them on the New document page after
           generating from JSON.
         </p>
@@ -27,11 +27,11 @@ export function Components() {
         {BLOCK_TYPES.map((type) => (
           <li
             key={type}
-            className="rounded-xl border border-slate-800 bg-slate-900/40 p-5"
+            className="rounded-xl border border-app bg-app-card p-5"
           >
-            <p className="text-sm font-medium capitalize text-white">{type}</p>
-            <p className="mt-2 text-sm text-slate-400">{descriptions[type]}</p>
-            <p className="mt-3 text-xs text-slate-500">Used in report, invoice, proposal, and certificate layouts.</p>
+            <p className="text-sm font-medium capitalize text-app-heading">{type}</p>
+            <p className="mt-2 text-sm text-app-muted">{descriptions[type]}</p>
+            <p className="mt-3 text-xs text-app-subtle">Used in report, invoice, proposal, and certificate layouts.</p>
           </li>
         ))}
       </ul>

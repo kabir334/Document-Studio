@@ -1,9 +1,106 @@
 @import "tailwindcss";
 
+/* Resolved theme: set on <html data-theme="light|dark"> via ThemeProvider */
+
+:root,
+[data-theme="dark"] {
+  --app-bg: #0f1117;
+  --app-sidebar: #13151d;
+  --app-surface: #0f172a;
+  --app-surface-muted: rgb(15 23 42 / 0.4);
+  --app-border: #1e293b;
+  --app-text: #e2e8f0;
+  --app-text-heading: #ffffff;
+  --app-text-muted: #94a3b8;
+  --app-text-subtle: #64748b;
+  --app-hover: rgb(30 41 59 / 0.5);
+  --app-hover-solid: #1e293b;
+  --app-input-bg: #0f172a;
+  --app-nav-active: #1e293b;
+  --app-card: rgb(15 23 42 / 0.4);
+  --app-card-strong: rgb(15 23 42 / 0.5);
+  --app-code-bg: #020617;
+  --app-border-dashed: #475569;
+}
+
+[data-theme="light"] {
+  --app-bg: #f8fafc;
+  --app-sidebar: #f1f5f9;
+  --app-surface: #ffffff;
+  --app-surface-muted: #f1f5f9;
+  --app-border: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-heading: #0f172a;
+  --app-text-muted: #64748b;
+  --app-text-subtle: #94a3b8;
+  --app-hover: rgb(226 232 240 / 0.6);
+  --app-hover-solid: #e2e8f0;
+  --app-input-bg: #ffffff;
+  --app-nav-active: #e2e8f0;
+  --app-card: rgb(241 245 249 / 0.8);
+  --app-card-strong: #ffffff;
+  --app-code-bg: #f1f5f9;
+  --app-border-dashed: #cbd5e1;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0f1117;
-  color: #e2e8f0;
+  background-color: var(--app-bg);
+  color: var(--app-text);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer utilities {
+  .bg-app {
+    background-color: var(--app-bg);
+  }
+  .bg-app-sidebar {
+    background-color: var(--app-sidebar);
+  }
+  .bg-app-surface {
+    background-color: var(--app-surface);
+  }
+  .bg-app-card {
+    background-color: var(--app-card);
+  }
+  .bg-app-card-strong {
+    background-color: var(--app-card-strong);
+  }
+  .bg-app-input {
+    background-color: var(--app-input-bg);
+  }
+  .bg-app-nav-active {
+    background-color: var(--app-nav-active);
+  }
+  .bg-app-hover-solid {
+    background-color: var(--app-hover-solid);
+  }
+  .bg-app-code {
+    background-color: var(--app-code-bg);
+  }
+  .text-app {
+    color: var(--app-text);
+  }
+  .text-app-heading {
+    color: var(--app-text-heading);
+  }
+  .text-app-muted {
+    color: var(--app-text-muted);
+  }
+  .text-app-subtle {
+    color: var(--app-text-subtle);
+  }
+  .border-app {
+    border-color: var(--app-border);
+  }
+  .border-app-dashed {
+    border-color: var(--app-border-dashed);
+  }
+  .hover\:bg-app-hover:hover {
+    background-color: var(--app-hover-solid);
+  }
+  .hover\:bg-app-hover-muted:hover {
+    background-color: var(--app-hover);
+  }
 }

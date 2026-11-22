@@ -6,12 +6,12 @@ interface BlockPropertiesProps {
 }
 
 const fieldClass =
-  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 focus:border-blue-500 focus:outline-none'
+  'w-full rounded-lg border border-app bg-app-input px-3 py-2 text-sm text-app focus:border-blue-500 focus:outline-none'
 
 export function BlockProperties({ block, onChange }: BlockPropertiesProps) {
   return (
     <div className="flex flex-col gap-3">
-      <span className="text-sm font-medium text-slate-300">Properties</span>
+      <span className="text-sm font-medium text-app">Properties</span>
       {block.type === 'heading' && (
         <>
           <input
@@ -60,7 +60,7 @@ export function BlockProperties({ block, onChange }: BlockPropertiesProps) {
 
       {block.type === 'list' && (
         <>
-          <label className="flex items-center gap-2 text-xs text-slate-400">
+          <label className="flex items-center gap-2 text-xs text-app-muted">
             <input
               type="checkbox"
               checked={Boolean(block.ordered)}
@@ -104,7 +104,7 @@ export function BlockProperties({ block, onChange }: BlockPropertiesProps) {
               />
               <button
                 type="button"
-                className="text-slate-500 hover:text-red-400"
+                className="text-app-subtle hover:text-red-400"
                 onClick={() =>
                   onChange({ ...block, items: block.items.filter((_, idx) => idx !== i) })
                 }
@@ -175,7 +175,7 @@ function TableEditor({
           ))}
           <button
             type="button"
-            className="text-slate-500 hover:text-red-400"
+            className="text-app-subtle hover:text-red-400"
             onClick={() =>
               onChange({ ...block, rows: block.rows.filter((_, i) => i !== r) })
             }
