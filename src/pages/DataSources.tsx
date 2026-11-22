@@ -12,6 +12,9 @@ import {
 import { parseJson } from '../services/parseJson'
 import { parseCsv } from '../services/csv'
 
+const inputClass =
+  'rounded-lg border border-app bg-app-input px-3 py-2 text-sm text-app'
+
 export function DataSources() {
   const navigate = useNavigate()
   const [sources, setSources] = useState<StoredDataSource[]>([])
@@ -84,27 +87,27 @@ export function DataSources() {
   return (
     <div className="flex flex-col gap-8 p-8">
       <div>
-        <p className="text-sm text-slate-500">Design / Data sources</p>
-        <h2 className="mt-1 text-2xl font-semibold text-white">Data sources</h2>
-        <p className="mt-1 max-w-2xl text-slate-400">
+        <p className="text-sm text-app-subtle">Design / Data sources</p>
+        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Data sources</h2>
+        <p className="mt-1 max-w-2xl text-app-muted">
           Import JSON or CSV, save it locally, and send it into a document. CSV with many rows
           maps to line items, metrics, or deliverables depending on the template.
         </p>
       </div>
 
       <div className="grid max-w-4xl gap-6 lg:grid-cols-2">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
-          <h3 className="text-sm font-medium text-white">Add source</h3>
+        <div className="rounded-xl border border-app bg-app-card p-6">
+          <h3 className="text-sm font-medium text-app-heading">Add source</h3>
           <div className="mt-4 flex flex-col gap-3">
             <input
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+              className={inputClass}
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
             <div className="flex gap-2">
               <select
-                className="flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className={`flex-1 ${inputClass}`}
                 value={kind}
                 onChange={(e) => setKind(e.target.value as DataSourceKind)}
               >
@@ -112,7 +115,7 @@ export function DataSources() {
                 <option value="csv">CSV</option>
               </select>
               <select
-                className="flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className={`flex-1 ${inputClass}`}
                 value={templateId}
                 onChange={(e) => setTemplateId(e.target.value)}
               >
@@ -121,7 +124,7 @@ export function DataSources() {
                 ))}
               </select>
             </div>
-            <label className="cursor-pointer rounded-lg border border-dashed border-slate-600 px-3 py-2 text-center text-xs text-slate-400 hover:border-slate-500">
+            <label className="cursor-pointer rounded-lg border border-dashed border-app-dashed px-3 py-2 text-center text-xs text-app-muted hover:border-app">
               Upload .json or .csv
               <input
                 type="file"
@@ -134,7 +137,7 @@ export function DataSources() {
               />
             </label>
             <textarea
-              className="min-h-40 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 font-mono text-xs text-slate-200"
+              className={`min-h-40 font-mono text-xs ${inputClass}`}
               placeholder={kind === 'json' ? '{ "title": "..." }' : 'col1,col2\na,b'}
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -150,28 +153,28 @@ export function DataSources() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
-          <h3 className="text-sm font-medium text-white">Preview</h3>
-          <pre className="mt-4 max-h-80 overflow-auto rounded-lg bg-slate-950 p-3 text-xs text-slate-300">
+        <div className="rounded-xl border border-app bg-app-card p-6">
+          <h3 className="text-sm font-medium text-app-heading">Preview</h3>
+          <pre className="mt-4 max-h-80 overflow-auto rounded-lg bg-app-code p-3 text-xs text-app">
             {preview ?? 'Paste data to preview parsed shape.'}
           </pre>
         </div>
       </div>
 
       <div>
-        <h3 className="text-sm font-medium text-white">Saved sources</h3>
+        <h3 className="text-sm font-medium text-app-heading">Saved sources</h3>
         {sources.length === 0 ? (
-          <p className="mt-3 text-sm text-slate-500">No saved sources yet.</p>
+          <p className="mt-3 text-sm text-app-subtle">No saved sources yet.</p>
         ) : (
           <ul className="mt-3 flex max-w-3xl flex-col gap-2">
             {sources.map((source) => (
               <li
                 key={source.id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-800 bg-slate-900/30 px-4 py-3"
+                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-app bg-app-card px-4 py-3"
               >
                 <div>
-                  <p className="font-medium text-slate-200">{source.name}</p>
-                  <p className="text-xs text-slate-500">
+                  <p className="font-medium text-app">{source.name}</p>
+                  <p className="text-xs text-app-subtle">
                     {source.kind.toUpperCase()} · {new Date(source.createdAt).toLocaleString()}
                   </p>
                 </div>
@@ -189,7 +192,7 @@ export function DataSources() {
                       deleteDataSource(source.id)
                       refresh()
                     }}
-                    className="rounded-lg px-3 py-1.5 text-sm text-red-400 hover:bg-slate-800"
+                    className="rounded-lg px-3 py-1.5 text-sm text-red-400 hover:bg-app-hover"
                   >
                     Delete
                   </button>
@@ -200,9 +203,9 @@ export function DataSources() {
         )}
       </div>
 
-      <p className="text-sm text-slate-500">
+      <p className="text-sm text-app-subtle">
         Try the bundled invoice line-items CSV from the repo at{' '}
-        <code className="text-slate-400">src/data/sampleInvoiceLines.csv</code>
+        <code className="text-app-muted">src/data/sampleInvoiceLines.csv</code>
       </p>
     </div>
   )

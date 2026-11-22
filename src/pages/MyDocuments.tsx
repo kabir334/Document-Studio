@@ -32,9 +32,9 @@ export function MyDocuments() {
     <div className="flex flex-col gap-8 p-8">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-slate-500">Workspace / My documents</p>
-          <h2 className="mt-1 text-2xl font-semibold text-white">My documents</h2>
-          <p className="mt-1 text-slate-400">Saved drafts stored in this browser.</p>
+          <p className="text-sm text-app-subtle">Workspace / My documents</p>
+          <h2 className="mt-1 text-2xl font-semibold text-app-heading">My documents</h2>
+          <p className="mt-1 text-app-muted">Saved drafts stored in this browser.</p>
         </div>
         <Link
           to="/new"
@@ -45,7 +45,7 @@ export function MyDocuments() {
       </div>
 
       {docs.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-slate-700 p-12 text-center text-slate-400">
+        <div className="rounded-xl border border-dashed border-app-dashed p-12 text-center text-app-muted">
           No saved documents yet. Create a document and use Save draft on the New document page.
         </div>
       ) : (
@@ -55,11 +55,11 @@ export function MyDocuments() {
             return (
               <li
                 key={doc.id}
-                className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-800 bg-slate-900/40 px-5 py-4"
+                className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-app bg-app-card px-5 py-4"
               >
                 <div>
-                  <p className="font-medium text-white">{doc.title}</p>
-                  <p className="text-sm text-slate-500">
+                  <p className="font-medium text-app-heading">{doc.title}</p>
+                  <p className="text-sm text-app-subtle">
                     {templateName}
                     {doc.status ? ` · ${doc.status}` : ''}
                     {' · '}
@@ -70,14 +70,14 @@ export function MyDocuments() {
                   <button
                     type="button"
                     onClick={() => handleOpen(doc)}
-                    className="rounded-lg border border-slate-600 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-800"
+                    className="rounded-lg border border-app-dashed px-3 py-1.5 text-sm text-app hover:bg-app-hover"
                   >
                     Open
                   </button>
                   <button
                     type="button"
                     onClick={() => handleDelete(doc.id)}
-                    className="rounded-lg px-3 py-1.5 text-sm text-red-400 hover:bg-slate-800"
+                    className="rounded-lg px-3 py-1.5 text-sm text-red-400 hover:bg-app-hover"
                   >
                     Delete
                   </button>

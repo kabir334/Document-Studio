@@ -15,8 +15,8 @@ export function ComingSoon() {
   return (
     <div className="flex h-full items-center justify-center p-8">
       <div className="text-center">
-        <h2 className="text-xl font-semibold text-white">{label}</h2>
-        <p className="mt-2 text-sm text-slate-400">Coming soon — this area is planned for a future phase.</p>
+        <h2 className="text-xl font-semibold text-app-heading">{label}</h2>
+        <p className="mt-2 text-sm text-app-muted">Coming soon — this area is planned for a future phase.</p>
       </div>
     </div>
   )

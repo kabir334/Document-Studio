@@ -35,7 +35,7 @@ type LocationState = {
 
 function StatusBadge({ status }: { status: DocumentStatus }) {
   const styles: Record<DocumentStatus, string> = {
-    draft: 'bg-slate-700 text-slate-200',
+    draft: 'bg-app-nav-active text-app',
     ready: 'bg-emerald-900/70 text-emerald-300',
     exported: 'bg-blue-900/70 text-blue-300',
   }
@@ -308,9 +308,9 @@ export function NewDocument() {
     <div className="flex h-full min-h-0 flex-col gap-6 p-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-sm text-slate-500">Workspace / New document</p>
+          <p className="text-sm text-app-subtle">Workspace / New document</p>
           <div className="mt-1 flex items-center gap-3">
-            <h2 className="text-2xl font-semibold text-white">New document</h2>
+            <h2 className="text-2xl font-semibold text-app-heading">New document</h2>
             <StatusBadge status={status} />
           </div>
         </div>
@@ -322,7 +322,7 @@ export function NewDocument() {
               setExported(false)
             }}
             disabled={!layoutEdited || history.past.length === 0}
-            className="rounded-lg border border-slate-600 px-3 py-2 text-sm text-slate-200 hover:bg-slate-800 disabled:opacity-40"
+            className="rounded-lg border border-app-dashed px-3 py-2 text-sm text-app hover:bg-app-hover disabled:opacity-40"
           >
             Undo
           </button>
@@ -333,7 +333,7 @@ export function NewDocument() {
               setExported(false)
             }}
             disabled={!layoutEdited || history.future.length === 0}
-            className="rounded-lg border border-slate-600 px-3 py-2 text-sm text-slate-200 hover:bg-slate-800 disabled:opacity-40"
+            className="rounded-lg border border-app-dashed px-3 py-2 text-sm text-app hover:bg-app-hover disabled:opacity-40"
           >
             Redo
           </button>
@@ -341,13 +341,13 @@ export function NewDocument() {
             type="button"
             onClick={handleSaveDraft}
             disabled={!working}
-            className="rounded-lg border border-slate-600 px-4 py-2 text-sm text-slate-200 hover:bg-slate-800 disabled:opacity-40"
+            className="rounded-lg border border-app-dashed px-4 py-2 text-sm text-app hover:bg-app-hover disabled:opacity-40"
           >
             Save draft
           </button>
           <Link
             to="/templates"
-            className="rounded-lg px-4 py-2 text-sm text-slate-400 hover:text-slate-200"
+            className="rounded-lg px-4 py-2 text-sm text-app-muted hover:text-app"
           >
             Browse templates
           </Link>
@@ -366,15 +366,15 @@ export function NewDocument() {
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-[minmax(300px,38%)_1fr]">
         <div className="flex min-h-0 flex-col gap-4 overflow-auto">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-5">
+          <div className="rounded-xl border border-app bg-app-card p-5">
             <TemplatePicker
               templates={templates}
               selectedId={templateId}
               onSelect={handleTemplateChange}
             />
             {templateId === 'certificate' && working?.theme === 'certificate' && (
-              <div className="mt-4 border-t border-slate-800 pt-4">
-                <p className="mb-2 text-xs font-medium text-slate-400">Certificate color</p>
+              <div className="mt-4 border-t border-app pt-4">
+                <p className="mb-2 text-xs font-medium text-app-muted">Certificate color</p>
                 <div className="flex flex-wrap gap-2">
                   {CERT_ACCENTS.map((accent) => (
                     <button
@@ -383,8 +383,8 @@ export function NewDocument() {
                       onClick={() => setCertificateAccent(accent.id)}
                       className={`flex items-center gap-2 rounded-md border px-2 py-1 text-xs ${
                         (working.accent ?? prefs.defaultCertificateAccent) === accent.id
-                          ? 'border-blue-500 text-white'
-                          : 'border-slate-700 text-slate-400'
+                          ? 'border-blue-500 text-app-heading'
+                          : 'border-app text-app-muted'
                       }`}
                     >
                       <span className={`h-3 w-3 rounded-full ${accent.className}`} />
@@ -396,10 +396,10 @@ export function NewDocument() {
             )}
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-5">
+          <div className="rounded-xl border border-app bg-app-card p-5">
             <button
               type="button"
-              className="mb-3 text-sm text-slate-400 hover:text-slate-200"
+              className="mb-3 text-sm text-app-muted hover:text-app"
               onClick={() => setShowJson((v) => !v)}
             >
               {showJson ? 'Hide JSON' : 'Show JSON'}
@@ -419,7 +419,7 @@ export function NewDocument() {
             )}
           </div>
 
-          <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-5">
+          <div className="rounded-xl border border-app bg-app-card p-5">
             <BlockList
               blocks={working?.blocks ?? []}
               selectedIndex={selectedIndex}
@@ -431,7 +431,7 @@ export function NewDocument() {
           </div>
 
           {selectedBlock && (
-            <div className="rounded-xl border border-slate-800 bg-slate-900/30 p-5">
+            <div className="rounded-xl border border-app bg-app-card p-5">
               <BlockProperties
                 block={selectedBlock}
                 onChange={(block) => {
@@ -446,7 +446,7 @@ export function NewDocument() {
           )}
         </div>
 
-        <div className="min-h-[480px] rounded-xl border border-slate-800 bg-slate-900/30 p-5">
+        <div className="min-h-[480px] rounded-xl border border-app bg-app-card p-5">
           <DocumentPreview
             html={html}
             onExportPdf={handleExportPdf}

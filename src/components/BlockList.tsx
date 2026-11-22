@@ -21,9 +21,9 @@ export function BlockList({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between gap-2">
-        <span className="text-sm font-medium text-slate-300">Blocks</span>
+        <span className="text-sm font-medium text-app">Blocks</span>
         <select
-          className="rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-xs text-slate-200"
+          className="rounded-md border border-app bg-app-input px-2 py-1 text-xs text-app"
           defaultValue=""
           onChange={(e) => {
             const value = e.target.value as Block['type']
@@ -43,14 +43,14 @@ export function BlockList({
       </div>
 
       {blocks.length === 0 ? (
-        <p className="text-xs text-slate-500">Generate from JSON, then add or edit blocks.</p>
+        <p className="text-xs text-app-subtle">Generate from JSON, then add or edit blocks.</p>
       ) : (
         <ul className="flex max-h-64 flex-col gap-1 overflow-auto">
           {blocks.map((block, index) => (
             <li
               key={`${block.type}-${index}`}
               className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm ${
-                selectedIndex === index ? 'bg-slate-800 text-white' : 'text-slate-300'
+                selectedIndex === index ? 'bg-app-nav-active text-app-heading' : 'text-app'
               }`}
             >
               <button
@@ -58,12 +58,12 @@ export function BlockList({
                 className="min-w-0 flex-1 truncate text-left"
                 onClick={() => onSelect(index)}
               >
-                <span className="mr-2 text-xs uppercase text-slate-500">{block.type}</span>
+                <span className="mr-2 text-xs uppercase text-app-subtle">{block.type}</span>
                 {blockLabel(block)}
               </button>
               <button
                 type="button"
-                className="px-1 text-slate-500 hover:text-white"
+                className="px-1 text-app-subtle hover:text-app-heading"
                 onClick={() => onMove(index, -1)}
                 disabled={index === 0}
               >
@@ -71,7 +71,7 @@ export function BlockList({
               </button>
               <button
                 type="button"
-                className="px-1 text-slate-500 hover:text-white"
+                className="px-1 text-app-subtle hover:text-app-heading"
                 onClick={() => onMove(index, 1)}
                 disabled={index === blocks.length - 1}
               >
@@ -79,7 +79,7 @@ export function BlockList({
               </button>
               <button
                 type="button"
-                className="px-1 text-slate-500 hover:text-red-400"
+                className="px-1 text-app-subtle hover:text-red-400"
                 onClick={() => onDelete(index)}
               >
                 ×
