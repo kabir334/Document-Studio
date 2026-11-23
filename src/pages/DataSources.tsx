@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { templates } from '../templates'
+import { useAllTemplates } from '../hooks/useAllTemplates'
 import {
   deleteDataSource,
   listDataSources,
@@ -16,6 +17,7 @@ const inputClass =
   'rounded-lg border border-app bg-app-input px-3 py-2 text-sm text-app'
 
 export function DataSources() {
+  const allTemplates = useAllTemplates()
   const navigate = useNavigate()
   const [sources, setSources] = useState<StoredDataSource[]>([])
   const [name, setName] = useState('')
@@ -80,7 +82,7 @@ export function DataSources() {
   }
 
   const handleUse = (source: StoredDataSource) => {
-    const tid = source.templateId ?? templates[0].id
+    const tid = source.templateId ?? allTemplates[0]?.id ?? templates[0].id
     navigate(`/new?template=${tid}&source=${source.id}`)
   }
 
@@ -119,7 +121,7 @@ export function DataSources() {
                 value={templateId}
                 onChange={(e) => setTemplateId(e.target.value)}
               >
-                {templates.map((t) => (
+                {allTemplates.map((t) => (
                   <option key={t.id} value={t.id}>{t.name}</option>
                 ))}
               </select>
