@@ -26,7 +26,7 @@ export function DocumentPreview({
             type="button"
             onClick={onExportHtml}
             disabled={!html || !canExport}
-            className="rounded-lg border border-app-dashed px-3 py-1.5 text-sm text-app hover:bg-app-hover disabled:opacity-40"
+            className="rounded-lg border border-app-dashed px-2.5 py-1.5 text-xs text-app hover:bg-app-hover disabled:opacity-40 sm:px-3 sm:text-sm"
           >
             Download HTML
           </button>
@@ -34,7 +34,7 @@ export function DocumentPreview({
             type="button"
             onClick={onExportPdf}
             disabled={!html || exporting || !canExport}
-            className="rounded-lg bg-blue-600 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:text-sm"
           >
             {exporting ? 'Exporting…' : 'Export PDF'}
           </button>
@@ -56,7 +56,7 @@ export function DocumentPreview({
           <iframe
             srcDoc={html}
             title="Document preview"
-            className="h-full min-h-[320px] w-full border-0 bg-white"
+            className="h-full min-h-[200px] w-full border-0 bg-white md:min-h-[320px]"
             sandbox="allow-same-origin"
           />
         ) : (

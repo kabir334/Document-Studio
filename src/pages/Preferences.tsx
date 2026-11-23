@@ -30,14 +30,14 @@ export function Preferences() {
   }
 
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="page-shell">
       <div>
         <p className="text-sm text-app-subtle">Settings / Preferences</p>
-        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Preferences</h2>
+        <h2 className="mt-1 text-xl font-semibold text-app-heading md:text-2xl">Preferences</h2>
         <p className="mt-1 text-app-muted">Defaults and branding for new documents.</p>
       </div>
 
-      <div className="flex max-w-lg flex-col gap-5 rounded-xl border border-app bg-app-card p-6">
+      <div className="flex w-full max-w-lg flex-col gap-5 rounded-xl border border-app bg-app-card p-4 md:p-6">
         <label className="flex flex-col gap-2 text-sm text-app">
           Default template
           <select

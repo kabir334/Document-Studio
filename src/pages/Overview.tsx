@@ -11,14 +11,14 @@ export function Overview() {
   const prefs = loadPreferences()
 
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="page-shell">
       <div>
         <p className="text-sm text-app-subtle">Workspace / Overview</p>
-        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Document Studio</h2>
+        <h2 className="mt-1 text-xl font-semibold text-app-heading md:text-2xl">Document Studio</h2>
         <p className="mt-1 text-app-muted">Create and manage your documents.</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 max-w-lg">
+      <div className="grid max-w-lg grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-app bg-app-card-strong p-6">
           <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600/20 text-blue-400">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -40,7 +40,7 @@ export function Overview() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-app bg-app-card p-8">
+      <div className="rounded-xl border border-app bg-app-card p-6 md:p-8">
         <div className="flex flex-col items-center gap-4 text-center">
           <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-app-nav-active text-app-muted">
             <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

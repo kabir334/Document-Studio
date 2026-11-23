@@ -81,7 +81,7 @@ export function BlockProperties({ block, onChange }: BlockPropertiesProps) {
       {block.type === 'meta' && (
         <div className="flex flex-col gap-2">
           {block.items.map((item, i) => (
-            <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2">
+            <div key={i} className="grid grid-cols-1 gap-2 sm:grid-cols-[1fr_1fr_auto]">
               <input
                 className={fieldClass}
                 value={item.label}
@@ -147,7 +147,7 @@ function TableEditor({
   }
 
   return (
-    <div className="flex flex-col gap-2 overflow-auto">
+    <div className="flex max-w-full flex-col gap-2 overflow-x-auto">
       <div className="flex gap-1">
         {block.columns.map((col, c) => (
           <input

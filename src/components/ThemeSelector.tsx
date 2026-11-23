@@ -68,7 +68,7 @@ function labelFor(preference: ThemePreference): string {
   return OPTIONS.find((o) => o.id === preference)?.label ?? 'Dark'
 }
 
-export function ThemeSelector() {
+export function ThemeSelector({ compact = false }: { compact?: boolean }) {
   const { preference, setPreference } = useTheme()
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
@@ -106,15 +106,22 @@ export function ThemeSelector() {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={listId}
+        aria-label={compact ? `Theme: ${labelFor(preference)}` : undefined}
         onClick={() => setOpen((v) => !v)}
-        className="flex min-w-[7.5rem] items-center justify-between gap-2 rounded-lg border border-app bg-app-input px-2.5 py-1.5 text-sm text-app transition-colors hover:bg-app-hover-muted"
+        className={`flex items-center rounded-lg border border-app bg-app-input text-sm text-app transition-colors hover:bg-app-hover-muted ${
+          compact
+            ? 'h-9 w-9 shrink-0 justify-center p-0 md:h-auto md:w-auto md:min-w-[7.5rem] md:justify-between md:gap-2 md:px-2.5 md:py-1.5'
+            : 'min-w-[7.5rem] justify-between gap-2 px-2.5 py-1.5'
+        }`}
       >
-        <span className="flex items-center gap-1.5">
+        <span className={`flex items-center ${compact ? 'md:gap-1.5' : 'gap-1.5'}`}>
           <CurrentIcon className="h-4 w-4 shrink-0 text-app-muted" />
-          <span className="text-app-heading">{labelFor(preference)}</span>
+          <span className={compact ? 'hidden text-app-heading md:inline' : 'text-app-heading'}>
+            {labelFor(preference)}
+          </span>
         </span>
         <svg
-          className={`h-3.5 w-3.5 shrink-0 text-app-subtle transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`hidden h-3.5 w-3.5 shrink-0 text-app-subtle transition-transform md:block ${open ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -130,7 +137,11 @@ export function ThemeSelector() {
           id={listId}
           role="listbox"
           aria-label="Theme"
-          className="absolute bottom-full left-0 right-0 z-50 mb-1.5 overflow-hidden rounded-xl border border-app bg-app-card-strong p-1 shadow-lg shadow-black/20"
+          className={`absolute z-50 overflow-hidden rounded-xl border border-app bg-app-card-strong p-1 shadow-lg shadow-black/20 ${
+            compact
+              ? 'bottom-0 left-full mb-0 ml-2 min-w-[9.5rem] md:bottom-full md:left-0 md:right-0 md:mb-1.5 md:ml-0 md:min-w-0'
+              : 'bottom-full left-0 right-0 mb-1.5'
+          }`}
         >
           {OPTIONS.map((themeOption) => {
             const active = preference === themeOption.id

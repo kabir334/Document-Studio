@@ -29,11 +29,11 @@ export function MyDocuments() {
   }
 
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="page-shell">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-sm text-app-subtle">Workspace / My documents</p>
-          <h2 className="mt-1 text-2xl font-semibold text-app-heading">My documents</h2>
+          <h2 className="mt-1 text-xl font-semibold text-app-heading md:text-2xl">My documents</h2>
           <p className="mt-1 text-app-muted">Saved drafts stored in this browser.</p>
         </div>
         <Link
@@ -45,11 +45,11 @@ export function MyDocuments() {
       </div>
 
       {docs.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-app-dashed p-12 text-center text-app-muted">
+        <div className="rounded-xl border border-dashed border-app-dashed p-8 text-center text-app-muted md:p-12">
           No saved documents yet. Create a document and use Save draft on the New document page.
         </div>
       ) : (
-        <ul className="flex max-w-3xl flex-col gap-3">
+        <ul className="flex w-full max-w-3xl flex-col gap-3">
           {docs.map((doc) => {
             const templateName = getTemplateById(doc.templateId)?.name ?? doc.templateId
             return (

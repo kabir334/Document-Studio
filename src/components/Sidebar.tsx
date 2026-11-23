@@ -1,9 +1,21 @@
+import type { ComponentType } from 'react'
 import { NavLink } from 'react-router-dom'
+import {
+  NavIconComponents,
+  NavIconDataSources,
+  NavIconDocuments,
+  NavIconLogo,
+  NavIconNewDocument,
+  NavIconOverview,
+  NavIconPreferences,
+  NavIconTemplates,
+} from './navIcons'
 import { ThemeSelector } from './ThemeSelector'
 
 interface NavItem {
   label: string
   path: string
+  icon: ComponentType<{ className?: string }>
 }
 
 interface NavGroup {
@@ -15,64 +27,74 @@ const navGroups: NavGroup[] = [
   {
     title: 'Workspace',
     items: [
-      { label: 'Overview', path: '/' },
-      { label: 'New document', path: '/new' },
-      { label: 'My documents', path: '/documents' },
+      { label: 'Overview', path: '/', icon: NavIconOverview },
+      { label: 'New document', path: '/new', icon: NavIconNewDocument },
+      { label: 'My documents', path: '/documents', icon: NavIconDocuments },
     ],
   },
   {
     title: 'Design',
     items: [
-      { label: 'Templates', path: '/templates' },
-      { label: 'Components', path: '/components' },
-      { label: 'Data sources', path: '/data-sources' },
+      { label: 'Templates', path: '/templates', icon: NavIconTemplates },
+      { label: 'Components', path: '/components', icon: NavIconComponents },
+      { label: 'Data sources', path: '/data-sources', icon: NavIconDataSources },
     ],
   },
   {
     title: 'Settings',
-    items: [{ label: 'Preferences', path: '/preferences' }],
+    items: [{ label: 'Preferences', path: '/preferences', icon: NavIconPreferences }],
   },
 ]
 
 export function Sidebar() {
   return (
-    <aside className="flex h-full w-56 shrink-0 flex-col border-r border-app bg-app-sidebar px-4 py-6">
-      <div className="mb-8 px-2">
-        <h1 className="text-lg font-semibold text-app-heading">Document Studio</h1>
+    <aside className="flex h-full w-[3.75rem] shrink-0 flex-col border-r border-app bg-app-sidebar px-2 py-4 md:w-56 md:px-4 md:py-6">
+      <div className="mb-6 flex justify-center px-0 md:mb-8 md:justify-start md:px-2">
+        <NavIconLogo className="h-7 w-7 text-app-heading md:hidden" aria-hidden />
+        <h1 className="hidden text-lg font-semibold text-app-heading md:block">Document Studio</h1>
       </div>
 
-      <nav className="flex flex-1 flex-col gap-6">
-        {navGroups.map((group) => (
+      <nav className="flex flex-1 flex-col gap-4 overflow-y-auto md:gap-6">
+        {navGroups.map((group, groupIndex) => (
           <div key={group.title}>
-            <p className="mb-2 px-2 text-xs font-medium uppercase tracking-wider text-app-subtle">
+            {groupIndex > 0 && (
+              <div className="mb-2 border-t border-app md:hidden" aria-hidden />
+            )}
+            <p className="mb-2 hidden px-2 text-xs font-medium uppercase tracking-wider text-app-subtle md:block">
               {group.title}
             </p>
             <ul className="flex flex-col gap-0.5">
-              {group.items.map((item) => (
-                <li key={item.path}>
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `block rounded-lg px-3 py-2 text-sm transition-colors ${
-                        isActive
-                          ? 'bg-app-nav-active text-app-heading'
-                          : 'text-app-muted hover:bg-app-hover-muted hover:text-app'
-                      }`
-                    }
-                  >
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
+              {group.items.map((item) => {
+                const Icon = item.icon
+                return (
+                  <li key={item.path}>
+                    <NavLink
+                      to={item.path}
+                      title={item.label}
+                      aria-label={item.label}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 rounded-lg transition-colors md:px-3 md:py-2 ${
+                          isActive
+                            ? 'bg-app-nav-active text-app-heading'
+                            : 'text-app-muted hover:bg-app-hover-muted hover:text-app'
+                        } justify-center p-2.5 md:justify-start`
+                      }
+                    >
+                      <Icon className="h-5 w-5 shrink-0" />
+                      <span className="hidden text-sm md:inline">{item.label}</span>
+                    </NavLink>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         ))}
       </nav>
 
-      <div className="mt-6 border-t border-app px-2 pt-4">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-sm text-app-muted">Theme</span>
-          <ThemeSelector />
+      <div className="mt-4 border-t border-app pt-3 md:mt-6 md:px-2 md:pt-4">
+        <div className="flex flex-col items-center gap-2 md:flex-row md:items-center md:justify-between md:gap-3">
+          <span className="hidden text-sm text-app-muted md:inline">Theme</span>
+          <ThemeSelector compact />
         </div>
       </div>
     </aside>
