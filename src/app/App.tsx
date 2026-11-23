@@ -7,6 +7,7 @@ import { MyDocuments } from '../pages/MyDocuments'
 import { DataSources } from '../pages/DataSources'
 import { Components } from '../pages/Components'
 import { Preferences } from '../pages/Preferences'
+import { CustomTemplateEditor } from '../pages/CustomTemplateEditor'
 
 export function App() {
   return (
@@ -18,6 +19,8 @@ export function App() {
             <Route path="/" element={<Overview />} />
             <Route path="/new" element={<NewDocument />} />
             <Route path="/documents" element={<MyDocuments />} />
+            <Route path="/templates/new" element={<CustomTemplateEditor mode="create" />} />
+            <Route path="/templates/:id/edit" element={<CustomTemplateEditor mode="edit" />} />
             <Route path="/templates" element={<Templates />} />
             <Route path="/components" element={<Components />} />
             <Route path="/data-sources" element={<DataSources />} />

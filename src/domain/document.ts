@@ -1,4 +1,6 @@
-export type DocumentTheme = 'report' | 'invoice' | 'certificate' | 'proposal'
+import type { CustomTemplateColors } from './customTemplate'
+
+export type DocumentTheme = 'report' | 'invoice' | 'certificate' | 'proposal' | 'custom'
 
 export type CertificateAccent = 'navy' | 'forest' | 'burgundy' | 'gold'
 
@@ -18,4 +20,5 @@ export interface DocumentModel {
   filename: string
   blocks: Block[]
   accent?: CertificateAccent
+  customColors?: CustomTemplateColors
 }

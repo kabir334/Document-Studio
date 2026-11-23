@@ -5,7 +5,8 @@ import { JsonEditor } from '../components/JsonEditor'
 import { DocumentPreview } from '../components/DocumentPreview'
 import { BlockList } from '../components/BlockList'
 import { BlockProperties } from '../components/BlockProperties'
-import { templates, getTemplateById } from '../templates'
+import { getTemplateById, templates } from '../templates'
+import { useAllTemplates } from '../hooks/useAllTemplates'
 import { parseJson } from '../services/parseJson'
 import { buildDocument } from '../services/buildDocument'
 import { renderHtml } from '../services/renderHtml'
@@ -47,6 +48,7 @@ function StatusBadge({ status }: { status: DocumentStatus }) {
 }
 
 export function NewDocument() {
+  const allTemplates = useAllTemplates()
   const [searchParams, setSearchParams] = useSearchParams()
   const location = useLocation()
   const state = location.state as LocationState
@@ -54,12 +56,13 @@ export function NewDocument() {
   const paramTemplate = searchParams.get('template')
   const paramSource = searchParams.get('source')
   const prefs = loadPreferences()
+  const fallbackId = allTemplates[0]?.id ?? templates[0].id
   const initialId =
     paramTemplate && getTemplateById(paramTemplate)
       ? paramTemplate
       : getTemplateById(prefs.defaultTemplateId)
         ? prefs.defaultTemplateId
-        : templates[0].id
+        : fallbackId
 
   const [templateId, setTemplateId] = useState(initialId)
   const [jsonInput, setJsonInput] = useState('')
@@ -72,7 +75,7 @@ export function NewDocument() {
   const [showJson, setShowJson] = useState(true)
   const [history, setHistory] = useState<HistoryState<DocumentModel | null>>(initHistory(null))
 
-  const template = getTemplateById(templateId) ?? templates[0]
+  const template = getTemplateById(templateId) ?? allTemplates[0] ?? templates[0]
 
   useEffect(() => {
     if (paramTemplate && getTemplateById(paramTemplate)) {
@@ -368,7 +371,7 @@ export function NewDocument() {
         <div className="flex min-h-0 flex-col gap-4 overflow-auto">
           <div className="rounded-xl border border-app bg-app-card p-4 md:p-5">
             <TemplatePicker
-              templates={templates}
+              templates={allTemplates}
               selectedId={templateId}
               onSelect={handleTemplateChange}
             />

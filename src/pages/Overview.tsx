@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
-import { templates } from '../templates'
+import { getAllTemplates } from '../templates'
 import { listSavedDocuments } from '../services/savedDocuments'
 import { listExportHistory } from '../services/exportHistory'
 import { loadPreferences } from '../services/preferences'
 
 export function Overview() {
   const docCount = listSavedDocuments().length
-  const templateCount = templates.length
+  const templateCount = getAllTemplates().length
   const history = listExportHistory().slice(0, 5)
   const prefs = loadPreferences()
 

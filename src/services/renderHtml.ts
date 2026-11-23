@@ -1,4 +1,5 @@
 import type { Block, CertificateAccent, DocumentModel, DocumentTheme } from '../domain/document'
+import { customColorsStyleVars } from './templatePlaceholders'
 
 function escapeHtml(text: string): string {
   return text
@@ -133,6 +134,13 @@ const themeStyles: Record<DocumentTheme, string> = {
     .proposal-banner h1 { color: #ffffff; margin-bottom: 8px; }
     .proposal-banner p { color: #cbd5e1; margin: 0; }
   `,
+  custom: `
+    body { background: var(--doc-page-bg, #ffffff); }
+    .custom-doc h2 { color: var(--doc-primary, #1e3a5f); }
+    .custom-doc th { background: var(--doc-table-header, #1e3a5f); }
+    .custom-doc .callout { border-left-color: var(--doc-callout-border, #2563eb); }
+    .custom-doc .total-row { background: var(--doc-total-bg, #1e3a5f); }
+  `,
 }
 
 function renderBlock(block: Block): string {
@@ -219,6 +227,11 @@ function wrapBody(document: DocumentModel): string {
           ? `<div class="report-title">${renderBlock(title)}</div>`
           : ''
       return `<div class="page">${titleHtml}${rest.map(renderBlock).join('\n')}</div>`
+    }
+    case 'custom': {
+      const style =
+        document.customColors != null ? customColorsStyleVars(document.customColors) : ''
+      return `<div class="page custom-doc" style="${style}">${html}</div>`
     }
     default:
       return `<div class="page">${html}</div>`

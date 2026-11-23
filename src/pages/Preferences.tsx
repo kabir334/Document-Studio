@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { templates } from '../templates'
+import { useAllTemplates } from '../hooks/useAllTemplates'
 import type { CertificateAccent } from '../domain/document'
 import {
   DEFAULT_PREFERENCES,
@@ -16,6 +16,7 @@ const ACCENTS: { id: CertificateAccent; label: string; className: string }[] = [
 ]
 
 export function Preferences() {
+  const allTemplates = useAllTemplates()
   const [prefs, setPrefs] = useState<AppPreferences>(DEFAULT_PREFERENCES)
   const [saved, setSaved] = useState(false)
 
@@ -45,7 +46,7 @@ export function Preferences() {
             value={prefs.defaultTemplateId}
             onChange={(e) => setPrefs({ ...prefs, defaultTemplateId: e.target.value })}
           >
-            {templates.map((t) => (
+            {allTemplates.map((t) => (
               <option key={t.id} value={t.id}>{t.name}</option>
             ))}
           </select>
