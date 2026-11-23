@@ -305,12 +305,12 @@ export function NewDocument() {
   }, [])
 
   return (
-    <div className="flex h-full min-h-0 flex-col gap-6 p-8">
+    <div className="page-shell flex h-full min-h-0">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <p className="text-sm text-app-subtle">Workspace / New document</p>
           <div className="mt-1 flex items-center gap-3">
-            <h2 className="text-2xl font-semibold text-app-heading">New document</h2>
+            <h2 className="text-xl font-semibold text-app-heading md:text-2xl">New document</h2>
             <StatusBadge status={status} />
           </div>
         </div>
@@ -366,7 +366,7 @@ export function NewDocument() {
 
       <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-[minmax(300px,38%)_1fr]">
         <div className="flex min-h-0 flex-col gap-4 overflow-auto">
-          <div className="rounded-xl border border-app bg-app-card p-5">
+          <div className="rounded-xl border border-app bg-app-card p-4 md:p-5">
             <TemplatePicker
               templates={templates}
               selectedId={templateId}
@@ -396,7 +396,7 @@ export function NewDocument() {
             )}
           </div>
 
-          <div className="rounded-xl border border-app bg-app-card p-5">
+          <div className="rounded-xl border border-app bg-app-card p-4 md:p-5">
             <button
               type="button"
               className="mb-3 text-sm text-app-muted hover:text-app"
@@ -419,7 +419,7 @@ export function NewDocument() {
             )}
           </div>
 
-          <div className="rounded-xl border border-app bg-app-card p-5">
+          <div className="rounded-xl border border-app bg-app-card p-4 md:p-5">
             <BlockList
               blocks={working?.blocks ?? []}
               selectedIndex={selectedIndex}
@@ -431,7 +431,7 @@ export function NewDocument() {
           </div>
 
           {selectedBlock && (
-            <div className="rounded-xl border border-app bg-app-card p-5">
+            <div className="rounded-xl border border-app bg-app-card p-4 md:p-5">
               <BlockProperties
                 block={selectedBlock}
                 onChange={(block) => {
@@ -446,7 +446,7 @@ export function NewDocument() {
           )}
         </div>
 
-        <div className="min-h-[480px] rounded-xl border border-app bg-app-card p-5">
+        <div className="min-h-[min(420px,70vh)] rounded-xl border border-app bg-app-card p-4 md:min-h-[480px] md:p-5">
           <DocumentPreview
             html={html}
             onExportPdf={handleExportPdf}

@@ -3,14 +3,14 @@ import { templates } from '../templates'
 
 export function Templates() {
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="page-shell">
       <div>
         <p className="text-sm text-app-subtle">Design / Templates</p>
-        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Templates</h2>
+        <h2 className="mt-1 text-xl font-semibold text-app-heading md:text-2xl">Templates</h2>
         <p className="mt-1 text-app-muted">Choose a starting layout for a new document.</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 max-w-4xl">
+      <div className="grid w-full max-w-4xl gap-4 sm:grid-cols-2">
         {templates.map((t) => (
           <article
             key={t.id}

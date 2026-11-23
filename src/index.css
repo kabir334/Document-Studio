@@ -103,4 +103,16 @@ body {
   .hover\:bg-app-hover-muted:hover {
     background-color: var(--app-hover);
   }
+  .page-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  @media (min-width: 768px) {
+    .page-shell {
+      gap: 2rem;
+      padding: 2rem;
+    }
+  }
 }

@@ -85,17 +85,17 @@ export function DataSources() {
   }
 
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="page-shell">
       <div>
         <p className="text-sm text-app-subtle">Design / Data sources</p>
-        <h2 className="mt-1 text-2xl font-semibold text-app-heading">Data sources</h2>
+        <h2 className="mt-1 text-xl font-semibold text-app-heading md:text-2xl">Data sources</h2>
         <p className="mt-1 max-w-2xl text-app-muted">
           Import JSON or CSV, save it locally, and send it into a document. CSV with many rows
           maps to line items, metrics, or deliverables depending on the template.
         </p>
       </div>
 
-      <div className="grid max-w-4xl gap-6 lg:grid-cols-2">
+      <div className="grid w-full max-w-4xl gap-6 lg:grid-cols-2">
         <div className="rounded-xl border border-app bg-app-card p-6">
           <h3 className="text-sm font-medium text-app-heading">Add source</h3>
           <div className="mt-4 flex flex-col gap-3">
@@ -105,7 +105,7 @@ export function DataSources() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2 sm:flex-row">
               <select
                 className={`flex-1 ${inputClass}`}
                 value={kind}
